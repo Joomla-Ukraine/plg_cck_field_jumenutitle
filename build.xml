@@ -1,0 +1,50 @@
+<project name="jumenutitle" default="dist" basedir=".">
+
+    <property name="VERSION" value="1.0.2"/>
+
+    <tstamp>
+        <format property="DATE" pattern="%d.%m.%Y" />
+    </tstamp>
+
+    <property name="build" value="build"/>
+    <property name="dist" value="dist"/>
+    <property name="filename" value="plg_cck_field_jumenutitle_v${VERSION}.zip"/>
+
+    <target name="init" depends="clean">
+        <mkdir dir="${build}"/>
+        <mkdir dir="${dist}"/>
+    </target>
+
+    <target name="replace">
+        <copy file="plg_cck_field_jumenutitle/jumenutitle.xml" todir="${build}">
+            <filterchain>
+                <replacetokens>
+                    <token key="version" value="${VERSION}" />
+                    <token key="date" value="${DATE}" />
+                </replacetokens>
+            </filterchain>
+        </copy>
+    </target>
+
+    <target name="copy">
+        <copy todir="${build}">
+            <fileset dir="plg_cck_field_jumenutitle">
+                <include name="**"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="dist" depends="init, replace, copy">
+        <zip destfile="${dist}/${filename}">
+            <fileset dir="${build}/">
+                <include name="**/*"/>
+            </fileset>
+        </zip>
+        <delete dir="${build}"/>
+    </target>
+
+    <target name="clean">
+        <delete dir="${build}"/>
+    </target>
+
+</project>

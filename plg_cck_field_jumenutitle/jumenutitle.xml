@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" group="cck_field" version="3.9" method="upgrade">
+	<name>plg_cck_field_jumenutitle</name>
+	<author>Denys Nosov (Joomla! Ukraine)</author>
+    <authorEmail>denys@joomla-ua.org</authorEmail>
+    <authorUrl>https://joomla-ua.org</authorUrl>
+    <copyright>Copyright (C) 2023 Joomla! Ukraine. All Rights Reserved.</copyright>
+    <license>GNU General Public License version 2 or later.</license>
+    <creationDate>@date@</creationDate>
+	<description>JUMenuTitle Field Plug-in for SEBLOD // SEBLOD 4.x - Joomla! Ukraine</description>
+	<version>@version@</version>
+	
+	<scriptfile>install/script.php</scriptfile>
+	
+	<files>
+		<folder>assets</folder>
+		<folder>classes</folder>
+		<folder>install</folder>
+		<folder>tmpl</folder>
+		<filename plugin="jumenutitle">jumenutitle.php</filename>
+	</files>
+	
+	<languages folder="languages">
+		<language tag="en-GB">en-GB/plg_cck_field_jumenutitle.ini</language>
+		<language tag="en-GB">en-GB/plg_cck_field_jumenutitle.sys.ini</language>
+	</languages>
+	
+	<config>
+		<fields name="params" addfieldpath="/libraries/cck/construction/field">
+			<fieldset name="basic">
+				<field name="" type="spacer" hr="false" />
+			</fieldset>
+			
+			<fieldset name="advanced">
+				<field name="group" type="text" default="PLG_CCK_FIELD_GROUP_HTML" label="LIB_CCK_GROUP_LABEL" size="60" description="LIB_CCK_FIELD_GROUP_DESC" />
+				<field name="export" type="cckexport" default="" label="LIB_CCK_EXPORT_LABEL" description="LIB_CCK_FIELD_EXPORT_DESC" />
+			</fieldset>
+		</fields>
+	</config>
+
+	<updateservers>
+        <server type="extension" priority="1" name="JUMenuTitle">https://joomla-ua.org/update/plg/plg_cck_field_jumenutitlexml</server>
+    </updateservers>
+
+</extension>
