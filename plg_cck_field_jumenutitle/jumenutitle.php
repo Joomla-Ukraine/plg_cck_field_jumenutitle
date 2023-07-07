@@ -146,19 +146,19 @@ class plgCCK_FieldJUMenuTitle extends JCckPluginField
 
 		self::g_onCCK_FieldPrepareContent($field, $config);
 
-		$item = Factory::getApplication()->getMenu()->getActive();
+		$item     = Factory::getApplication()->getMenu()->getActive();
+		$options2 = JCckDev::fromJSON($field->options2);
 
-		$class = $field->css . $field->markup_class;
+		$class = ($options2[ 'title_class' ] ? $options2[ 'title_class' ] . ' ' : '') . $field->css . $field->markup_class;
 		$class = $class ? ' class="' . trim($class) . '"' : '';
 
-		$html = '<h2 class="' . $class . '">';
+		$html = '<h2' . $class . '>';
 
 		if($item->getParams()->get('menu-anchor_css'))
 		{
-			$options2 = JCckDev::fromJSON($field->options2);
-			$html     .= (new FileLayout('icon', JPATH_SITE . '/plugins/cck_field/jumenutitle/tmpl'))->render([
+			$html .= (new FileLayout('icon', JPATH_SITE . '/plugins/cck_field/jumenutitle/tmpl'))->render([
 				'sprite' => $options2[ 'sprite' ],
-				'icon'   => $field->location,
+				'icon'   => $item->getParams()->get('menu-anchor_css'),
 				'size'   => $options2[ 'size' ],
 				'class'  => ($options2[ 'class' ] ? : '')
 			]);
@@ -167,7 +167,6 @@ class plgCCK_FieldJUMenuTitle extends JCckPluginField
 		$html .= '<span class="uk-text-middle">' . $item->title . '</span>';
 		$html .= '</h2>';
 
-		// Set
 		$field->html  = $html;
 		$field->value = '';
 		$field->label = '';
@@ -193,19 +192,19 @@ class plgCCK_FieldJUMenuTitle extends JCckPluginField
 		self::$path = self::g_getPath(self::$type . '/');
 		self::g_onCCK_FieldPrepareForm($field, $config);
 
-		$item = Factory::getApplication()->getMenu()->getActive();
+		$item     = Factory::getApplication()->getMenu()->getActive();
+		$options2 = JCckDev::fromJSON($field->options2);
 
-		$class = $field->css . $field->markup_class;
+		$class = ($options2[ 'title_class' ] ? $options2[ 'title_class' ] . ' ' : '') . $field->css . $field->markup_class;
 		$class = $class ? ' class="' . trim($class) . '"' : '';
 
-		$form = '<h2 class="' . $class . '">';
+		$form = '<h2' . $class . '>';
 
 		if($item->getParams()->get('menu-anchor_css'))
 		{
-			$options2 = JCckDev::fromJSON($field->options2);
-			$form     .= (new FileLayout('icon', JPATH_SITE . '/plugins/cck_field/jumenutitle/tmpl'))->render([
+			$form .= (new FileLayout('icon', JPATH_SITE . '/plugins/cck_field/jumenutitle/tmpl'))->render([
 				'sprite' => $options2[ 'sprite' ],
-				'icon'   => $field->location,
+				'icon'   => $item->getParams()->get('menu-anchor_css'),
 				'size'   => $options2[ 'size' ],
 				'class'  => ($options2[ 'class' ] ? : '')
 			]);
@@ -214,7 +213,6 @@ class plgCCK_FieldJUMenuTitle extends JCckPluginField
 		$form .= '<span class="uk-text-middle">' . $item->title . '</span>';
 		$form .= '</h2>';
 
-		// Set
 		$field->form  = $form;
 		$field->value = '';
 		$field->label = '';
