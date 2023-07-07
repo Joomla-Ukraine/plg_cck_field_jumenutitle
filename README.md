@@ -12,6 +12,3 @@ The plugin displays menu title and svg icon (based on SVG Sprite) for Admin Temp
 5. Set title and icon name to Link Class (any comments please :-) )
 
 Support Seblod 3.x and Seblod 4.x.
-
-**Output for example:**
-
